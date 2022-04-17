@@ -13,14 +13,16 @@ export class AuthController {
   @ApiOperation({ summary: '登陆' })
   @UseGuards(AuthGuard('local'))
   async login(@Body() user: authLoginDto, @Req() req) {
+    console.log(user);
+
     return await this.authService.login(user);
   }
 
-  @Get('login')
+  @Get('getshopkeeper')
   @ApiOperation({ summary: '获取用户信息' })
   @ApiBearerAuth() // swagger文档设置token
   @UseGuards(AuthGuard('jwt'))
-  getUserInfo(@Req() req) {
-    return req.user;
+  getshopkeeper(@Req() req) {
+    return this.authService.getShopkeeper();
   }
 }

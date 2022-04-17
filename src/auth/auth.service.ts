@@ -16,11 +16,11 @@ export class AuthService {
   async getUser(user) {
     const username = user.username;
 
-    const abc = await this.userService.findOne({
+    const exituser = await this.userService.findOne({
       where: { username },
     });
 
-    return abc;
+    return exituser;
   }
 
   createToken(user: Partial<User>) {
@@ -32,6 +32,13 @@ export class AuthService {
       username: user.username,
     });
     const username = user.username;
+    console.log(token);
+
     return { token, username };
+  }
+
+  async getShopkeeper() {
+    const Shopkeeper = this.userService.find();
+    return Shopkeeper;
   }
 }
