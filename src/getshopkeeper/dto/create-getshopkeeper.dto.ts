@@ -1,1 +1,23 @@
-export class CreateGetshopkeeperDto {}
+import { ApiProperty } from '@nestjs/swagger';
+
+export class CreateGetshopkeeperDto {
+  @ApiProperty({
+    description: '用户名',
+  })
+  readonly username;
+
+  @ApiProperty({
+    description: '粉丝',
+  })
+  readonly fans;
+
+  @ApiProperty({
+    description: '店名',
+  })
+  readonly shop;
+
+  @ApiProperty({
+    description: '购买人数',
+  })
+  readonly shopper;
+}

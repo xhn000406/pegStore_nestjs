@@ -11,24 +11,53 @@ export class GetshopkeeperService {
     @InjectRepository(User)
     private readonly shopkeeperRepository: Repository<User>,
   ) {}
-  create(createGetshopkeeperDto: CreateGetshopkeeperDto) {
-    return 'This action adds a new getshopkeeper';
-  }
 
-  async findAll() {
-    const result = await this.shopkeeperRepository
+  async findAll(query) {
+    console.log(query);
+    const { skip = 1, take = 10 } = query;
+
+    const qb = await this.shopkeeperRepository
       .createQueryBuilder('user')
-      .getMany();
-  
-    return result;
+      .skip((skip - 1) * take)
+      .take(take);
+
+    const count = await qb.getCount();
+
+    const result = await qb.getMany();
+
+    return {
+      count,
+      result,
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} getshopkeeper`;
+  async findSome(id: number, updateGetshopkeeperDto: UpdateGetshopkeeperDto) {
+    const { username } = updateGetshopkeeperDto;
+    console.log(username);
+
+    const qb = await this.shopkeeperRepository
+      .createQueryBuilder('user')
+      .where('username like :username', {
+        username: '%' + username + '%',
+      })
+      .skip(0)
+      .take(10);
+
+    const count = await qb.getCount();
+
+    const result = await qb.getMany();
+    return {
+      count,
+      result,
+    };
   }
 
-  update(id: number, updateGetshopkeeperDto: UpdateGetshopkeeperDto) {
-    return `This action updates a #${id} getshopkeeper`;
+  async update(id: number, updateGetshopkeeperDto: UpdateGetshopkeeperDto) {
+    const reSet = await this.shopkeeperRepository.update(
+      id,
+      updateGetshopkeeperDto,
+    );
+    return reSet;
   }
 
   async remove(id: number) {

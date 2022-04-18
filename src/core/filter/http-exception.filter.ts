@@ -13,6 +13,7 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     // 获取上下文对象里面的response
     const response = ctx.getResponse();
     // 获取错误码
+    console.log(exception);
 
     const exceptionContext = exception.getResponse();
 

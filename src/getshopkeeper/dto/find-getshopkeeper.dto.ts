@@ -1,9 +1,12 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { CreateGetshopkeeperDto } from './create-getshopkeeper.dto';
 
-export class UpdateGetshopkeeperDto extends PartialType(
-  CreateGetshopkeeperDto,
-) {
+export class findGetshopkeeperDto extends PartialType(CreateGetshopkeeperDto) {
+  @ApiProperty({
+    description: '用户名',
+  })
+  readonly username;
+
   @ApiProperty({
     description: '粉丝',
   })
