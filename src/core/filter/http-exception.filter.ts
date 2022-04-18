@@ -20,7 +20,7 @@ export class HttpExceptionFilter<T> implements ExceptionFilter {
     const status = exception.getStatus();
 
     const message = exceptionContext ? exceptionContext : exception.message;
-
+    // demo
     const errorResponse = {
       data: {},
       message: message,
