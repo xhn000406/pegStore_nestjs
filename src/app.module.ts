@@ -7,7 +7,12 @@ import { AuthModule } from './auth/auth.module';
 import { GetshopkeeperModule } from './getshopkeeper/getshopkeeper.module';
 
 @Module({
-  imports: [UserModule, TypeOrmModule.forRoot(), AuthModule, GetshopkeeperModule],
+  imports: [
+    UserModule,
+    TypeOrmModule.forRoot(),
+    AuthModule,
+    GetshopkeeperModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

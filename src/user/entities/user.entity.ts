@@ -14,20 +14,20 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: true })
   username: string;
 
   @Column({ select: false })
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: true })
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   fans: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: true })
   shop: string;
 
-  @Column()
+  @Column({ nullable: true })
   shopper: number;
 
   @Column({

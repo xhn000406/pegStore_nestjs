@@ -13,13 +13,12 @@ export class GetshopkeeperService {
   ) {}
 
   async findAll(query) {
-    console.log(query);
-    const { skip = 1, take = 10 } = query;
+    const { currentPage = 1, pageSize = 10 } = query;
 
     const qb = await this.shopkeeperRepository
       .createQueryBuilder('user')
-      .skip((skip - 1) * take)
-      .take(take);
+      .skip((currentPage - 1) * pageSize)
+      .take(pageSize);
 
     const count = await qb.getCount();
 
@@ -33,7 +32,6 @@ export class GetshopkeeperService {
 
   async findSome(id: number, updateGetshopkeeperDto: UpdateGetshopkeeperDto) {
     const { username } = updateGetshopkeeperDto;
-    console.log(username);
 
     const qb = await this.shopkeeperRepository
       .createQueryBuilder('user')
